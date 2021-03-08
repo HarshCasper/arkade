@@ -231,8 +231,7 @@ func Helm3Upgrade(chart, namespace, values, version string, overrides map[string
 	}
 
 	for k, v := range overrides {
-		args = append(args, "--set")
-		args = append(args, fmt.Sprintf("%s=%s", k, v))
+		args = append(args, "--set", fmt.Sprintf("%s=%s", k, v))
 	}
 
 	task := execute.ExecTask{
