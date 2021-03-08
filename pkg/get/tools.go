@@ -22,12 +22,7 @@ type Tools []Tool
 func MakeTools() Tools {
 	tools := []Tool{}
 
-	tools = append(tools,
-		Tool{
-			Owner: "openfaas",
-			Repo:  "faas-cli",
-			Name:  "faas-cli",
-			BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
+	tools = append(tools, Tool{Owner: "openfaas", Repo: "faas-cli", Name: "faas-cli", BinaryTemplate: `{{ if HasPrefix .OS "ming" -}}
 {{.Name}}.exe
 {{- else if eq .OS "darwin" -}}
 {{.Name}}-darwin
@@ -39,16 +34,7 @@ func MakeTools() Tools {
 {{.Name}}-arm64
 {{- else -}}
 {{.Name}}
-{{- end -}}`,
-		})
-
-	tools = append(tools,
-		Tool{
-			Owner:   "helm",
-			Repo:    "helm",
-			Name:    "helm",
-			Version: "v3.5.2",
-			URLTemplate: `{{$arch := "arm"}}
+{{- end -}}`}, Tool{Owner: "helm", Repo: "helm", Name: "helm", Version: "v3.5.2", URLTemplate: `{{$arch := "arm"}}
 
 {{- if eq .Arch "x86_64" -}}
 {{$arch = "amd64"}}
@@ -62,15 +48,7 @@ func MakeTools() Tools {
 {{$ext = "zip"}}
 {{- end -}}
 
-https://get.helm.sh/helm-{{.Version}}-{{$os}}-{{$arch}}.{{$ext}}`,
-		})
-
-	tools = append(tools,
-		Tool{
-			Owner: "roboll",
-			Repo:  "helmfile",
-			Name:  "helmfile",
-			BinaryTemplate: `{{$arch := "386"}}
+https://get.helm.sh/helm-{{.Version}}-{{$os}}-{{$arch}}.{{$ext}}`}, Tool{Owner: "roboll", Repo: "helmfile", Name: "helmfile", BinaryTemplate: `{{$arch := "386"}}
 	{{- if eq .Arch "x86_64" -}}
 	{{$arch = "amd64"}}
 	{{- end -}}
@@ -83,8 +61,7 @@ https://get.helm.sh/helm-{{.Version}}-{{$os}}-{{$arch}}.{{$ext}}`,
 	{{$ext = ".exe"}}
 	{{- end -}}
 
-helmfile_{{$os}}_{{$arch}}{{$ext}}`,
-		})
+helmfile_{{$os}}_{{$arch}}{{$ext}}`})
 
 	// https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/darwin/amd64/kubectl
 	tools = append(tools,
